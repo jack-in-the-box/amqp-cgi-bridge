@@ -1,4 +1,4 @@
-module xait/amqp-cgi-bridge
+module github.com/jack-in-the-box/amqp-cgi-bridge
 
 go 1.23.3
 
