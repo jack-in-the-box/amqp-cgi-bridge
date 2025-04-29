@@ -4,13 +4,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/skolodyazhnyy/amqp-cgi-bridge/bridge"
-	"github.com/skolodyazhnyy/go-common/log"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/jack-in-the-box/amqp-cgi-bridge/bridge"
+	"github.com/skolodyazhnyy/go-common/log"
+	"gopkg.in/yaml.v2"
 )
 
 var version = "unknown"

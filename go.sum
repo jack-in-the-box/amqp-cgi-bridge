@@ -1,11 +1,7 @@
 github.com/rabbitmq/amqp091-go v1.10.0 h1:STpn5XsHlHGcecLmMFCtg7mqq0RnD+zFr4uzukfVhBw=
 github.com/rabbitmq/amqp091-go v1.10.0/go.mod h1:Hy4jKW5kQART1u+JkDTF9YYOQUHXqMuhrgxOEeS7G4o=
-github.com/skolodyazhnyy/amqp-cgi-bridge v0.0.0-20180717002035-81c12303bf49 h1:M+2ayjAQ/WksUEwVAPjguW0pckqIsZsnvLmAIxmsVMA=
-github.com/skolodyazhnyy/amqp-cgi-bridge v0.0.0-20180717002035-81c12303bf49/go.mod h1:Y572fPcKhku59pefqDALqkKjzjuAz+vqOIh0nPjx2Ow=
 github.com/skolodyazhnyy/go-common v0.0.0-20190702235652-a93103cdc283 h1:5Yb4+F7Wu91xEKAu+Sn/m2Ok+nJoHV5CsqIObbfvO90=
 github.com/skolodyazhnyy/go-common v0.0.0-20190702235652-a93103cdc283/go.mod h1:TydGBbuK6DukP/fMMaGHdqnQSxUtk9xxspp/Vi3Ojhs=
-github.com/streadway/amqp v1.1.0 h1:py12iX8XSyI7aN/3dUT8DFIDJazNJsVJdxNVEpnQTZM=
-github.com/streadway/amqp v1.1.0/go.mod h1:WYSrTEYHOXHd0nwFeUXAe2G2hRnQT+deZJJf88uS9Bg=
 github.com/tomasen/fcgi_client v0.0.0-20180423082037-2bb3d819fd19 h1:ZCmSnT6CLGhfoQ2lPEhL4nsJstKDCw1F1RfN8/smTCU=
 github.com/tomasen/fcgi_client v0.0.0-20180423082037-2bb3d819fd19/go.mod h1:SXTY+QvI+KTTKXQdg0zZ7nx0u94QWh8ZAwBQYsW9cqk=
 go.uber.org/goleak v1.3.0 h1:2K3zAYmnTNqV73imy9J1T3WC+gmCePx2hEGkimedGto=
