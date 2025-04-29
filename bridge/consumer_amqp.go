@@ -192,9 +192,8 @@ loop:
 					"delivery_tag": d.DeliveryTag,
 				}
 
-				c.log.Debug("Processing messages", logctx)
-				c.log.Debug("Message from conmsumer", logctx)
-				c.log.Debugf("Message body: %s", d.Body)
+				c.log.Debug("Processing message", logctx)
+				// c.log.Debugf("Message body: %s", d.Body)
 
 				err := queue.Processor(ctx, headers(d), d.Body)
 				switch err {
