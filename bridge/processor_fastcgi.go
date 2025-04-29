@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/tomasen/fcgi_client"
+
+	fcgiclient "github.com/tomasen/fcgi_client"
 )
 
 func NewFastCGIProcessor(net, addr, script string, log logger) Processor {
@@ -37,6 +38,7 @@ func NewFastCGIProcessor(net, addr, script string, log logger) Processor {
 			return ErrProcessorInternal
 		}
 
+		log.Debugf("FastCGI response: %v", resp)
 		c := resp.StatusCode / 100
 		if c == 0 {
 			return ErrUnknownStatus

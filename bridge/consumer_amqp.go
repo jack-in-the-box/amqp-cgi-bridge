@@ -3,11 +3,12 @@ package bridge
 import (
 	"context"
 	"fmt"
-	amqp "github.com/rabbitmq/amqp091-go"
-	"golang.org/x/sync/errgroup"
 	"strings"
 	"sync"
 	"time"
+
+	amqp "github.com/rabbitmq/amqp091-go"
+	"golang.org/x/sync/errgroup"
 )
 
 type Processor func(ctx context.Context, headers map[string]string, body []byte) error
@@ -191,7 +192,9 @@ loop:
 					"delivery_tag": d.DeliveryTag,
 				}
 
-				c.log.Debug("Processing message", logctx)
+				c.log.Debug("Processing messages", logctx)
+				c.log.Debug("Message from conmsumer", logctx)
+				c.log.Debugf("Message body: %s", d.Body)
 
 				err := queue.Processor(ctx, headers(d), d.Body)
 				switch err {
