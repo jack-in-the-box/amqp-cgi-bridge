@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
+	"reflect"
 
 	fcgiclient "github.com/tomasen/fcgi_client"
 )
@@ -32,13 +34,43 @@ func NewFastCGIProcessor(net, addr, script string, log logger) Processor {
 		env["SCRIPT_FILENAME"] = script
 
 		resp, err := conn.Request(env, bytes.NewReader(append(body, 13, 10, 13, 10)))
+		log.Debugf("FastCGI response: %v", resp)
 		conn.Close()
 		if err != nil {
 			log.Errorf("An error occurred while making FastCGI request: %v", err)
 			return ErrProcessorInternal
 		}
 
-		log.Debugf("FastCGI response: %v", resp)
+		// Log all properties of the resp object
+		log.Debugf("Logging all properties of the FastCGI response:")
+		respValue := reflect.ValueOf(resp)
+		if respValue.Kind() == reflect.Ptr {
+			log.Debugf("Response is a pointer, dereferencing it")
+			respValue = respValue.Elem() // Dereference the pointer
+		}
+		respType := respValue.Type()
+		for i := 0; i < respType.NumField(); i++ {
+			field := respType.Field(i)
+			value := respValue.Field(i).Interface()
+
+			// Special handling for the Body field
+			if field.Name == "Body" {
+				if bodyReader, ok := value.(io.ReadCloser); ok {
+					bodyBytes, err := io.ReadAll(bodyReader)
+					if err != nil {
+						log.Errorf("Failed to read response body: %v", err)
+					} else {
+						log.Debugf("Body: %s", string(bodyBytes))
+					}
+					// Reset the body for further use
+					respValue.Field(i).Set(reflect.ValueOf(io.NopCloser(bytes.NewReader(bodyBytes))))
+					continue
+				}
+			}
+
+			log.Debugf("%s: %v", field.Name, value)
+		}
+
 		c := resp.StatusCode / 100
 		if c == 0 {
 			return ErrUnknownStatus
